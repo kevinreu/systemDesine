@@ -113,8 +113,8 @@ var graduateType;
 var program;
 var year;
 
-var enrollmentDate;
-var semesterID;
+
+
 var facultyID;
 var timeSlot;
 var availableSeats;
@@ -181,8 +181,8 @@ program=Major[Math.floor(Math.random()*Major.length)];
 var assingDate=randomDate(new Date(2019, 0, 1), new Date());
 var dateOfAppointment=randomDate(new Date(2022, 0, 1), new Date());
 var date=randomDate(new Date(2022, 0, 1), new Date());;
-var dateRecorded=randomDate(new Date(2022, 0, 1), new Date());;
-var dateDeclared=randomDate(new Date(2019, 0, 1), new Date());;
+var dateRecorded=randomDate(new Date(2022, 0, 1), new Date());
+var dateDeclared=randomDate(new Date(2017, 0, 1), new Date());
 var dayID=Math.floor(Math.random() * 5) + 1;
 var weekDay=Math.floor(Math.random() * 7) + 1;
 
@@ -220,13 +220,55 @@ for(var i=0 + 1;i<Math.floor(Math.random() * 180);i+=4)
   var grade=gradeArray[Math.floor(Math.random()*gradeArray.length)];
   var courseID=getRandomInt(999);
   var departmentID=getRandomInt(18);
+  var enrollmentDate= randomDate(new Date(2017, 0, 1), new Date());
+  var date1 = new Date('June 18, 2017 02:30:00');
+  var date2 = new Date('December 18, 2017 02:30:00');
+  var date3 = new Date('June 18, 2018 02:30:00');
+  var date4 = new Date('December 18, 2018 02:30:00');
+  var date5 = new Date('June 18, 2019 02:30:00');
+  var date6 = new Date('December 18, 2019 02:30:00');
+  var date7 = new Date('June 18, 2020 02:30:00');
+  var date8 = new Date('December 18, 2020 02:30:00');
+  var date9 = new Date('June 18, 2021 02:30:00');
+  var date10 = new Date('December 18, 2021 02:30:00');
+  if(enrollmentDate.getTime() > date10.getTime()){
+    var semesterID=1;
+    Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}
+else if(enrollmentDate.getTime() > date9.getTime()){
+  var semesterID=2;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}
+else if(enrollmentDate.getTime() > date8.getTime()){
+  var semesterID=3;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date7.getTime()){
+  var semesterID=4;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date6.getTime()){
+  var semesterID=5;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date5.getTime()){
+  var semesterID=6;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date4.getTime()){
+  var semesterID=7;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date3.getTime()){
+  var semesterID=8;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date2.getTime()){
+  var semesterID=9;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}else if(enrollmentDate.getTime() > date1.getTime()){
+  var semesterID=10;
+  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+}
 
 
 
 
-
-
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+ courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ semesterID+'\''+')');
+  //Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ semesterID+'\''+')');
 }
 
 
