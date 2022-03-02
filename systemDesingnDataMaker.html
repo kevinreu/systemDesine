@@ -19,11 +19,11 @@ var admin="";
 var researcher="";
 var fullTimeFaculty="";
 var partTimeFaculty="";
-var depeartmentFaculty="";
+var departmentFaculty="";
 var department="";
 var student="";
 var studentHold="";
-var hold="";
+var hold="('0','academic')('1','disciplinary')('2','financial')('3','helth')";
 var UnderGraduateStudent="";
 var FullTimeUnderGraduateStudent="";
 var PartTimeUnderGraduateStudent="";
@@ -42,13 +42,8 @@ var Office="";
 var Lab="";
 var Lecture="";
 var StudentMinor="";
-var Minor= [
-"science",
-"math",
-"art",
-"compsci"
-];//Minor[Math.floor(Math.random()*Minor.length)];
-var MinorRequirement="C or better in all minor classes";
+var Minor="";
+var MinorRequirement="";
 var StudentMajor="";
 var Major= [
 "science",
@@ -56,7 +51,7 @@ var Major= [
 "art",
 "compsci"
 ];//Major[Math.floor(Math.random()*Major.length)];
-var MajorRequirement="C or better in all major classes";
+var MajorRequirement="";
 var Course="";
 var Prerequisite="";
 var TimeSlot="";
@@ -64,7 +59,7 @@ var TimeSlotPeriod="";
 var Period="";
 var TimeSlotDay="";
 var Day="";
-var myArray = [
+var classStandingArr = [
 "freshmin",
 "sophmore",
 "jr",
@@ -83,27 +78,23 @@ var facultyType= [
 ];//facultyType[Math.floor(Math.random()*facultyType.length)];
 var maxCredits=20;
 var minCredits=3;
+var courseCredits=4;
 //departmentID[Math.floor(Math.random()*departmentID.length)];
 var precentTime=getRandomInt(100);;
-var departmentName= [
-"science",
-"math",
-"art",
-"compsci"
-];//departmentName[Math.floor(Math.random()*departmentName.length)];
+
 var departmentEmail;
 var departmentPhone;
 var chairName;
 var secretary;
 var roomID=getRandomInt(999);
 var departManager;
-var holdID=getRandomInt(4);//how many hold types??
+//how many hold types??
 var holeDescription= [
 "disciplinary",
 "financial",
 "academic",
 "helth"
-];
+];//holeDescription[Math.floor(Math.random()*holeDescription.length)];
 var classStanding;
 var studentType;
 var creditMax;
@@ -112,20 +103,15 @@ var graduateProgram;
 var graduateType;
 var program;
 var year;
-
-
-
 var facultyID;
 var timeSlot;
-
-
 var semesterYear;
 var present;
 var semester;
 var startTime;
 var endTime;
 var buildingID;
-var roomType=["lecture haul","classroom","studio","janator"];;
+var roomType="";
 var roomNumber=getRandomInt(999);
 var buildingName;
 var buildingType;
@@ -139,7 +125,7 @@ var minorReq;
 var minGradeReq;
 var studentDate;
 var major;
-var numOfCredits;
+var numOfCredits=90;
 var minGrade="c";
 var courseName;
 var description;
@@ -150,238 +136,401 @@ var timeSlotDay;
 var timeSlotPeriod;
 var period;
 var day;
-
+var departmentName="";
 
 function randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+	return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+	return Math.floor(Math.random() * max);
 }
 
-function enrolementTime()
+function studentHoldF()
 {
-  for(var i=0 + 1;i<Math.floor(Math.random() * 180);i+=4)
+	for(i=0;i<50;i++)
+	{
+		User_ID=Math.floor(Math.random() * 180)+7000300
+				var holdID=getRandomInt(4);
+		date=randomDate(new Date(2017, 0, 1), new Date());
+		studentHold=studentHold.concat('('+'\''+User_ID+'\''+','+'\''+holdID+'\''+','+'\''+date+'\''+')');
+	}
+}
+studentHoldF()
+
+function majorF()
+{
+  Major=Major.concat('('+'\''+"math"+'\''+','+'\''+ "1"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+  Major=Major.concat('('+'\''+"science"+'\''+','+'\''+ "2"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+  Major=Major.concat('('+'\''+"compsci"+'\''+','+'\''+ "3"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+  Major=Major.concat('('+'\''+"art"+'\''+','+'\''+"0"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+}
+majorF()
+function minorF()
+{
+
+  Minor=Minor.concat('('+'\''+"math"+'\''+','+'\''+ "1"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+  Minor=Minor.concat('('+'\''+"science"+'\''+','+'\''+ "2"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+  Minor=Minor.concat('('+'\''+"compsci"+'\''+','+'\''+ "3"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+  Minor=Minor.concat('('+'\''+"art"+'\''+','+'\''+"0"+'\''+','+'\''+ "numOfCredits "+numOfCredits+'\''+','+'\''+"min Grade "+minGrade+'\''+')');
+}
+minorF()
+
+function majorIDF()
+{
+  majorID=getRandomInt(4);
+}
+
+function StudentMajorF()
+{
+  studentDate=randomDate(new Date(2017, 0, 1), new Date())
+   majorIDF()
+  StudentMajor=StudentMajor.concat('('+'\''+majorID+'\''+','+'\''+ User_ID+'\''+','+'\''+ studentDate+'\''+')');
+}
+
+function buildingF()
+{
+  for(i=0;i<5;i++)
   {
-    var Crn=getRandomInt(9999);
-    var gradeArray= ["f","d-","d","d+","c-","c","c+","b-","b","b+","a-","a","a+"];
-    var grade=gradeArray[Math.floor(Math.random()*gradeArray.length)];
-    var courseID=getRandomInt(999);
-    var availableSeats=getRandomInt(99);
-    roomID=getRandomInt(999);
-    var enrollmentDate= randomDate(new Date(2017, 0, 1), new Date());
-  var date1 = new Date('June 18, 2017 02:30:00');
-  var date2 = new Date('December 18, 2017 02:30:00');
-  var date3 = new Date('June 18, 2018 02:30:00');
-  var date4 = new Date('December 18, 2018 02:30:00');
-  var date5 = new Date('June 18, 2019 02:30:00');
-  var date6 = new Date('December 18, 2019 02:30:00');
-  var date7 = new Date('June 18, 2020 02:30:00');
-  var date8 = new Date('December 18, 2020 02:30:00');
-  var date9 = new Date('June 18, 2021 02:30:00');
-  var date10 = new Date('December 18, 2021 02:30:00');
-if(enrollmentDate.getTime() > date10.getTime()){
-  var semesterID=1;
-  var currentEnrollment="enrolled";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+    buildingID=i;
 
+
+  buildingNameArr= [
+  "science",
+  "math",
+  "art",
+  "compsci",
+  "admin"
+];
+  buildingName=buildingNameArr[buildingID];
+  buildingType=buildingName;
+  Building=Building.concat('('+'\''+buildingID+'\''+','+'\''+ buildingName +'\''+','+'\''+ buildingType +'\''+')');
+  }
+  for(i=0;i<99;i++)
+  {
+  roomF();
+  buildingID=getRandomInt(5);
+  Room=Room.concat('('+'\''+roomID+'\''+','+'\''+ buildingID+'\''+','+'\''+ roomType+'\''+','+'\''+ roomNumber+'\''+')');
 }
-else if(enrollmentDate.getTime() > date9.getTime()){
-  var semesterID=2;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
+//('0','science','science')
+//('1','math','math')
+//('2','art','art')
+//('3','compsci','compsci')
+//('4','admin','admin')
 }
-else if(enrollmentDate.getTime() > date8.getTime()){
-  var semesterID=3;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date7.getTime()){
-  var semesterID=4;
-var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date6.getTime()){
-  var semesterID=5;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date5.getTime()){
-  var semesterID=6;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date4.getTime()){
-  var semesterID=7;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date3.getTime()){
-  var semesterID=8;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date2.getTime()){
-  var semesterID=9;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}else if(enrollmentDate.getTime() > date1.getTime()){
-  var semesterID=10;
-  var currentEnrollment="ended";
-  Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-  StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
-  Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
-
-}
-}
-}
-for (User_ID;User_ID<7001550;User_ID++&&Phone++)
+buildingF();
+function departmentNameF()
 {
-var First_Name= loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
-var First_Innitial=First_Name.charAt(0);
-var Last_Name= loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
-var Street_Address=getRandomInt(999)+' ' +loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
-var userID2=Math.floor(Math.random() * 7000300) + 7000000
-email= User_ID+First_Innitial+Last_Name+'@newWestbury.xyz';
-var Zipcode=getRandomInt(99999);
-var password=getRandomInt(9999999);
-var State='ny';
-var dateOfBirth=randomDate(new Date(1900, 0, 1), new Date());
-var City=loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
-var credits=Math.floor(Math.random() * 180) + 1
-var userID2=Math.floor(Math.random() * 180) + 1
-program=Minor[Math.floor(Math.random()*Minor.length)];
-program=Major[Math.floor(Math.random()*Major.length)];
-var assingDate=randomDate(new Date(2019, 0, 1), new Date());
-var dateOfAppointment=randomDate(new Date(2022, 0, 1), new Date());
-var date=randomDate(new Date(2022, 0, 1), new Date());;
-var dateRecorded=randomDate(new Date(2022, 0, 1), new Date());
-var dateDeclared=randomDate(new Date(2017, 0, 1), new Date());
-var dayID=Math.floor(Math.random() * 5) + 1;
-var weekDay=Math.floor(Math.random() * 7) + 1;
-
-
-
-if(User_ID<7000300)
+  var departmentNameIn= [
+  "science",
+  "math",
+  "art",
+  "compsci"
+];
+var departmentPhoneArr=[
+  "5161234567",
+  "5167654321",
+  "5164567132",
+  "5161237654"
+];
+departmentName=departmentNameIn[Math.floor(Math.random()*departmentNameIn.length)];
+departmentID=departmentNameIn.indexOf(departmentName)
+departmentEmail=departmentName+"@newWestbury.xyz";
+if(departmentID==0)
 {
-	var Role="faculty";
-  var departmentID=getRandomInt(18);
-	login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
-	user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
-	faculty= faculty.concat('('+'\''+User_ID+'\''+','+'\''+speciality+'\''+','+'\''+facultyType+'\''+','+'\''+Role+'\''+')');
-	depeartmentFaculty=depeartmentFaculty.concat('('+'\''+User_ID+'\''+','+'\''+departmentID+'\''+','+'\''+precentTime+'\''+','+'\''+dateOfAppointment+'\''+')');
-	department=department.concat('('+'\''+User_ID+'\''+','+'\''+departmentID+'\''+','+'\''+departmentName+'\''+','+'\''+departmentEmail+'\''+','+'\''+departmentPhone+'\''+','+'\''+chairName+'\''+','+'\''+secretary+'\''+','+'\''+roomID+'\''+','+'\''+departManager+'\''+')');
-	if(User_ID%2==0)
-	{
-		fullTimeFaculty=fullTimeFaculty.concat('('+'\''+User_ID+'\''+','+'\''+maxCredits+'\''+','+'\''+minCredits+'\''+')');
-	}
-else if (User_ID%2==1)
-{
-	partTimeFaculty=partTimeFaculty.concat('('+'\''+User_ID+'\''+','+'\''+maxCredits+'\''+','+'\''+minCredits+'\''+')');
+  departmentPhone=5161234567
+  chairName="jack sparro"
+  secretary="joe shmoe"
+  roomID=143
+  departManager="linkon"
+
 }
+else if (departmentID==1)
+{
+  departmentPhone=5167654321
+  chairName='john dow'
+  secretary="steve verbell"
+  roomID=213
+  departManager="joey"
 }
-else if(User_ID<7001300)
+else if (departmentID==2)
 {
-	var Role="undergrad";
-	login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
-	user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
-	advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
-	student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
-  enrolementTime()
-
-  //Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ semesterID+'\''+')');
-}
-
-	if(User_ID%2==0)
-	{
-		classStanding= myArray[Math.floor(Math.random()*myArray.length)];
-		FullTimeUnderGraduateStudent=FullTimeUnderGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+ classStanding+'\''+','+'\''+ creditMax+'\''+','+'\''+ creditMin+'\''+')');
-	}
-else if (User_ID%2==1)
-{
-	classStanding= myArray[Math.floor(Math.random()*myArray.length)];
-	PartTimeUnderGraduateStudent=PartTimeUnderGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+ classStanding+'\''+','+'\''+ creditMax+'\''+','+'\''+ creditMin+'\''+','+'\''+ classStanding+'\''+')');
-}
-
-
-else if(User_ID<7001460)
-{
-	var Role="grad";
-	login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
-	user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
-	advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
-	student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
-  enrolementTime()
-
-
-
-
-
-
-	if(User_ID%2==0)
-	{
-		year=1;
-		credits=Math.floor(Math.random() * 240) + 180
-		FullTimeGraduateStudent=FullTimeGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+credits+'\''+','+'\''+ program+'\''+','+'\''+ year+'\''+')');
-	}
-else if (User_ID%2==1)
-{
-	year=2;
-	credits=Math.floor(Math.random() * 90) + 180
-	PartTimeGraduateStudent=PartTimeGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+credits+'\''+','+'\''+ program+'\''+','+'\''+ year+'\''+')');
-}
-
-
-	}
-
-else if(User_ID<70015000)
-{
-	var Role="phd";
-	login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
-	user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+"D.O.B. "+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
-	advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
-	student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
-  enrolementTime()
-}
-else if (User_ID<70015025)
-{
-	var Role="researcher";
-	admin=admin.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
+  departmentPhone=5164567132
+  chairName='mark ruze'
+  secretary="jeff"
+  roomID=532
+  departManager="tiger"
 }
 
 else
 {
-	var Status="active";
-	researcher=researcher.concat('('+'\''+User_ID+'\''+','+'\''+Status+'\''+')');
+  departmentPhone=5161237654
+  chairName='dan pizza'
+  secretary="stan"
+  roomID=124
+  departManager="bob"
+}
+}
+
+function roomF()
+{
+  roomTypeArr=["lecture haul","class","studio"];
+
+  roomType=roomTypeArr[Math.floor(Math.random()*roomTypeArr.length)];
+
+  roomID=getRandomInt(999);
+  roomID2=getRandomInt(999);
+  numOfSeats=getRandomInt(200);
+  numOfStations=getRandomInt(200);
+  Office=('('+'\''+roomID+'\''+','+'\''+ numOfStations+'\''+')');
+
 }
 
 
+function LectureF()
+{
+  roomF()
+Lecture=Lecture.concat('('+'\''+roomID+'\''+','+'\''+ numOfSeats+'\''+')');
+Lab=Lab.concat('('+'\''+roomID2+'\''+','+'\''+ numOfStations+'\''+')');
 
-//login
-//document.write('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
-//user
-//user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
-//advisor
+}
+for(i=0;i<20;i++)
+{
+LectureF()
+}
+function enrolementTime()
+{
+	for(var i=0 + 1;i<Math.floor(Math.random() * 180);i+=4)
+	{
+		var Crn=getRandomInt(9999);
+		var gradeArray= ["f","d-","d","d+","c-","c","c+","b-","b","b+","a-","a","a+"];
+		var grade=gradeArray[Math.floor(Math.random()*gradeArray.length)];
+		var courseID=getRandomInt(999);
+		var availableSeats=getRandomInt(99);
+		roomF()
+    departmentNameF()
+		var enrollmentDate= randomDate(new Date(2017, 0, 1), new Date());
+		var date1 = new Date('June 18, 2017 02:30:00');
+		var date2 = new Date('December 18, 2017 02:30:00');
+		var date3 = new Date('June 18, 2018 02:30:00');
+		var date4 = new Date('December 18, 2018 02:30:00');
+		var date5 = new Date('June 18, 2019 02:30:00');
+		var date6 = new Date('December 18, 2019 02:30:00');
+		var date7 = new Date('June 18, 2020 02:30:00');
+		var date8 = new Date('December 18, 2020 02:30:00');
+		var date9 = new Date('June 18, 2021 02:30:00');
+		var date10 = new Date('December 18, 2021 02:30:00');
+		if(enrollmentDate.getTime() > date10.getTime()){
+			var semesterID=1;
+			var currentEnrollment="enrolled";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}
+		else if(enrollmentDate.getTime() > date9.getTime()){
+			var semesterID=2;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}
+		else if(enrollmentDate.getTime() > date8.getTime()){
+			var semesterID=3;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}else if(enrollmentDate.getTime() > date7.getTime()){
+			var semesterID=4;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}else if(enrollmentDate.getTime() > date6.getTime()){
+			var semesterID=5;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}
+		else if(enrollmentDate.getTime() > date5.getTime())
+		{
+			var semesterID=6;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}else if(enrollmentDate.getTime() > date4.getTime()){
+			var semesterID=7;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}else if(enrollmentDate.getTime() > date3.getTime()){
+			var semesterID=8;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}else if(enrollmentDate.getTime() > date2.getTime()){
+			var semesterID=9;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}else if(enrollmentDate.getTime() > date1.getTime()){
+			var semesterID=10;
+			var currentEnrollment="ended";
+			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
+			StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ Crn+'\''+','+'\''+courseID+'\''+','+'\''+semesterID+'\''+','+'\''+grade+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+      Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
+
+		}
+	}
+}
+for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
+{
+	var First_Name= loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
+	var First_Innitial=First_Name.charAt(0);
+	var Last_Name= loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
+	var Street_Address=getRandomInt(999)+' ' +loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
+	var userID2=Math.floor(Math.random() * 7000300) + 7000000
+			email= User_ID-7000000+First_Innitial+Last_Name+'@newWestbury.xyz';
+	var Zipcode=getRandomInt(99999);
+	var password=getRandomInt(9999999);
+	var State='ny';
+	var dateOfBirth=randomDate(new Date(1900, 0, 1), new Date());
+	var City=loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
+	var credits=Math.floor(Math.random() * 180) + 1
+			var userID2=Math.floor(Math.random() * 180) + 1
+			program=Minor[Math.floor(Math.random()*Minor.length)];
+	program=Major[Math.floor(Math.random()*Major.length)];
+	var assingDate=randomDate(new Date(2019, 0, 1), new Date());
+	var dateOfAppointment=randomDate(new Date(2022, 0, 1), new Date());
+	var date=randomDate(new Date(2022, 0, 1), new Date());;
+	var dateRecorded=randomDate(new Date(2022, 0, 1), new Date());
+	var dateDeclared=randomDate(new Date(2017, 0, 1), new Date());
+	var dayID=Math.floor(Math.random() * 5) + 1;
+	var weekDay=Math.floor(Math.random() * 7) + 1;
+
+
+
+	if(User_ID<7000300)
+	{
+		var Role="faculty";
+
+    departmentNameF();
+		login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
+		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
+		faculty= faculty.concat('('+'\''+User_ID+'\''+','+'\''+speciality+'\''+','+'\''+facultyType+'\''+','+'\''+Role+'\''+')');
+		departmentFaculty=departmentFaculty.concat('('+'\''+User_ID+'\''+','+'\''+departmentID+'\''+','+'\''+precentTime+'\''+','+'\''+dateOfAppointment+'\''+')');
+		department=department.concat('('+'\''+User_ID+'\''+','+'\''+departmentID+'\''+','+'\''+departmentName+'\''+','+'\''+departmentEmail+'\''+','+'\''+departmentPhone+'\''+','+'\''+chairName+'\''+','+'\''+secretary+'\''+','+'\''+roomID+'\''+','+'\''+departManager+'\''+')');
+    if(User_ID%2==0)
+		{
+			fullTimeFaculty=fullTimeFaculty.concat('('+'\''+User_ID+'\''+','+'\''+maxCredits+'\''+','+'\''+minCredits+'\''+')');
+		}
+		else
+		{
+			partTimeFaculty=partTimeFaculty.concat('('+'\''+User_ID+'\''+','+'\''+maxCredits+'\''+','+'\''+minCredits+'\''+')');
+		}
+	}
+	else if(User_ID<7001300)
+	{
+		var Role="undergrad";
+		login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
+		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
+		advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
+		student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
+		enrolementTime()
+    StudentMajorF()
+		//Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ semesterID+'\''+')');
+
+
+		if(User_ID%2==0)
+		{
+			classStanding= classStandingArr[Math.floor(Math.random()*classStandingArr.length)];
+			FullTimeUnderGraduateStudent=FullTimeUnderGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+ classStanding+'\''+','+'\''+ creditMax+'\''+','+'\''+ creditMin+'\''+')');
+		}
+
+		else if (User_ID%2==1)
+		{
+			classStanding= classStandingArr[Math.floor(Math.random()*classStandingArr.length)];
+			PartTimeUnderGraduateStudent=PartTimeUnderGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+ classStanding+'\''+','+'\''+ creditMax+'\''+','+'\''+ creditMin+'\''+','+'\''+ classStanding+'\''+')');
+		}
+	}
+
+	else if(User_ID<7001460)
+	{
+		var Role="grad";
+		login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
+		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
+		advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
+		student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
+		enrolementTime()
+    StudentMajorF()
+		if(User_ID%2==0)
+		{
+			year=1;
+			credits=Math.floor(Math.random() * 240) + 180
+					FullTimeGraduateStudent=FullTimeGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+credits+'\''+','+'\''+ program+'\''+','+'\''+ year+'\''+')');
+		}
+		else if (User_ID%2==1)
+		{
+			year=2;
+			credits=Math.floor(Math.random() * 90) + 180
+					PartTimeGraduateStudent=PartTimeGraduateStudent.concat('('+'\''+User_ID+'\''+','+'\''+credits+'\''+','+'\''+ program+'\''+','+'\''+ year+'\''+')');
+		}
+
+
+	}
+
+	else if(User_ID<70015000)
+	{
+		var Role="phd";
+		login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
+		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+"D.O.B. "+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
+		advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
+		student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
+		enrolementTime()
+    StudentMajorF()
+	}
+	else if (User_ID<70015025)
+	{
+		var Role="researcher";
+		admin=admin.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
+	}
+
+	else
+	{
+		var Status="active";
+		researcher=researcher.concat('('+'\''+User_ID+'\''+','+'\''+Status+'\''+')');
+	}
+
+
+
+	//login
+	//document.write('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
+	//user
+	//user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
+	//advisor
 }
 
 
@@ -401,9 +550,9 @@ document.write("fullTimeFaculty");
 document.write(fullTimeFaculty);
 document.write("partTimeFaculty");
 document.write(partTimeFaculty);
-document.write("depeartmentFaculty");
-document.write(depeartmentFaculty);
-document.write("department");
+document.write("departmentFaculty");
+document.write(departmentFaculty);
+document.write("Department");
 document.write(department);
 document.write("student");
 document.write(student);
