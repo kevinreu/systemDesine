@@ -137,8 +137,8 @@ var timeSlotPeriod;
 var period;
 var day;
 var departmentName="";
-var Crn='';
-var courseID='';
+var Crn=1000;
+var courseID=1000;
 semesterID='';
 var grade='';
 var departmentID='';
@@ -159,7 +159,7 @@ function studentHoldF()
 		User_ID=Math.floor(Math.random() * 180)+7000300
 				var holdID=getRandomInt(4);
 		date=randomDate(new Date(2017, 0, 1), new Date());
-		studentHold=studentHold.concat('('+'\''+User_ID+'\''+','+'\''+holdID+'\''+','+'\''+date+'\''+')');
+		studentHold=studentHold.concat('('+'\''+"userID "+User_ID+'\''+','+'\''+"holdID "+holdID+'\''+','+'\''+date+'\''+')');
 	}
 }
 studentHoldF()
@@ -237,12 +237,6 @@ function dayF()
   Day=Day.concat('('+'\''+6+'\''+','+'\''+ "sunday"+'\''+')');
 }
 dayF()
-
-
-
-
-
-
 function StudentHistoryF()
 {
   StudentHistory=StudentHistory.concat('('+'\''+User_ID+'\''+','+'\''+ "crn "+Crn+'\''+','+'\''+"courseID "+courseID+'\''+','+'\''+"semesterID "+semesterID+'\''+','+'\''+"grade "+grade+'\''+')');
@@ -251,11 +245,10 @@ function FacultyHistoryF()
 {
   SemesterYearF()
   FacultyHistory=FacultyHistory.concat('('+'\''+User_ID+'\''+','+'\''+ courseID+'\''+','+'\''+ Crn+'\''+','+'\''+ SemesterYear+'\''+')');
-
 }
 function AttendanceF()
 {
-  for(i=0;i<50;i++)
+  for(i=1;i<0;i++)//for(i=0;i<50;i++)
   {
     if(getRandomInt(999)<50)
     {
@@ -377,7 +370,6 @@ function PrerequisiteF()
 }
 function TimeSlotF()
 {
-
   for(var j=0;j<7;j++)
   {
   timeSlotDay=j
@@ -386,16 +378,12 @@ function TimeSlotF()
     timeSlotID=io;
     timeSlotPeriod=io;
     timeSlot=('('+'\''+timeSlotID+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotPeriod+'\''+')');
-
+		}
   }
-  }
-
 }
 TimeSlotF()
 function TimeSlotPeriodF()
 {
-
-
   for(var j=0;j<7;j++)
   {
   timeSlotDay=j
@@ -406,35 +394,22 @@ function TimeSlotPeriodF()
     //timeSlot=('('+'\''+timeSlotID+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotPeriod+'\''+')');
     TimeSlotPeriod=TimeSlotPeriod.concat('('+'\''+timeSlotID+timeSlotDay+timeSlotPeriod+'\''+','+'\''+ timeSlotID+'\''+','+'\''+ timeSlotID+timeSlotDay+timeSlotPeriod+'\''+')');
     TimeSlotDay=TimeSlotDay.concat('('+'\''+timeSlotDay+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotID+timeSlotDay+timeSlotPeriod+'\''+')');
-
   }
   }
-
-
 }
 TimeSlotPeriodF();
 function PeriodF()
 {
-
-
   for (var io=1;io<10;io++)
   {
     startTime=io;
     endTime=io;
     endTime+=1;
     period=io;
-    //timeSlot=('('+'\''+timeSlotID+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotPeriod+'\''+')');
-
-
   Period=Period.concat('('+'\''+period+'\''+','+'\''+"start time" +startTime+"pm"+'\''+','+'\''+"end time" +endTime+"pm"+'\''+')');
 }
 }
-
 PeriodF()
-
-
-
-
 function departmentFunction()
 {
   var departmentNameIn= [
@@ -514,27 +489,36 @@ for(i=0;i<20;i++)
 {
 LectureF()
 }
-function enrollmentTime()
+
+function CrnF()
+{
+
+}
+
+function enrollmentF()
 {
 	for(var i=0;i<Math.floor(Math.random() * 180);i+=4)
 	{
     minorID=getRandomInt(5);
     major=getRandomInt(5);
-		Crn=getRandomInt(99999);
 		gradeArray= ["f","d-","d","d+","c-","c","c+","b-","b","b+","a-","a","a+"];
 		grade=gradeArray[Math.floor(Math.random()*gradeArray.length)];
-		courseID=getRandomInt(99999);
+		Crn=getRandomInt(999999);
+		courseID=getRandomInt(999999);
 		var availableSeats=getRandomInt(99);
 		roomF()
     departmentFunction()
+		if(i<1)
+		{
     MinorRequirementF()
-    MajorRequirementF()
+		MajorRequirementF()
+		}
+
     if(User_ID<7000301)
     {
     FacultyHistoryF()
     }
 		var enrollmentDate= randomDate(new Date(2017, 0, 1), new Date());
-
 		var date1 = new Date('June 18, 2017 02:30:00');
 		var date2 = new Date('December 18, 2017 02:30:00');
 		var date3 = new Date('June 18, 2018 02:30:00');
@@ -553,9 +537,11 @@ function enrollmentTime()
 		if(enrollmentDate.getTime() > date10.getTime()){
 			semesterID=1;
 			var currentEnrollment="enrolled";
-      TimeSlotF()
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
@@ -564,8 +550,11 @@ function enrollmentTime()
 		else if(enrollmentDate.getTime() > date9.getTime()){
 			semesterID=2;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date9+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
@@ -575,24 +564,33 @@ function enrollmentTime()
 		else if(enrollmentDate.getTime() > date8.getTime()){
 			semesterID=3;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date8+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
 		}else if(enrollmentDate.getTime() > date7.getTime()){
 			semesterID=4;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date7+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
 		}else if(enrollmentDate.getTime() > date6.getTime()){
 			semesterID=5;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date6+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
@@ -601,40 +599,55 @@ function enrollmentTime()
 		{
 			semesterID=6;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date5+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
 		}else if(enrollmentDate.getTime() > date4.getTime()){
 			semesterID=7;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date4+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
 		}else if(enrollmentDate.getTime() > date3.getTime()){
 			semesterID=8;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date3+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
 		}else if(enrollmentDate.getTime() > date2.getTime()){
 			semesterID=9;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date2+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
 		}else if(enrollmentDate.getTime() > date1.getTime()){
 			semesterID=10;
 			var currentEnrollment="ended";
+			timeSlot1=getRandomInt(9);
+			timeSlot2=getRandomInt(7);
+			timeSlot3=getRandomInt(9);
 			Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ "semesterID" +semesterID+'\''+')');
-			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot+'\''+','+'\''+ "year " +date10+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
+			Class=Class.concat('('+'\''+"CRN"+Crn+'\''+','+'\''+"CourseID" +courseID+'\''+','+'\''+User_ID+'\''+','+'\''+"roomID" +roomID+'\''+','+'\''+ "timeslot " +timeSlot1+timeSlot2+timeSlot3+'\''+','+'\''+ "year " +date1+'\''+','+'\''+ "avaliable seates " +availableSeats+'\''+','+'\''+ "currentEnrollement " +currentEnrollment+'\''+')');
       Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ courseCredits+'\''+')');
       StudentHistoryF()
       AttendanceF()
@@ -643,6 +656,8 @@ function enrollmentTime()
 
 	}
 }
+function createUserF()
+{
 for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 {
 	var First_Name= loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
@@ -650,15 +665,14 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 	var Last_Name= loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
 	var Street_Address=getRandomInt(999)+' ' +loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
 	var userID2=Math.floor(Math.random() * 7000300) + 7000000
-			email= User_ID-7000000+First_Innitial+Last_Name+'@newWestbury.xyz';
+	email= User_ID-7000000+First_Innitial+Last_Name+'@newWestbury.xyz';
 	var Zipcode=getRandomInt(99999);
 	var password=getRandomInt(9999999);
 	var State='ny';
 	var dateOfBirth=randomDate(new Date(1900, 0, 1), new Date());
 	var City=loremIpsum[Math.floor(Math.random()*loremIpsum.length)];
 	var credits=Math.floor(Math.random() * 180) + 1
-			var userID2=Math.floor(Math.random() * 180) + 1
-			program=Minor[Math.floor(Math.random()*Minor.length)];
+	var userID2=Math.floor(Math.random() * 180) + 1
 	program=Major[Math.floor(Math.random()*Major.length)];
 	var assingDate=randomDate(new Date(2019, 0, 1), new Date());
 	var dateOfAppointment=randomDate(new Date(2022, 0, 1), new Date());
@@ -688,8 +702,7 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 		{
 			partTimeFaculty=partTimeFaculty.concat('('+'\''+User_ID+'\''+','+'\''+maxCredits+'\''+','+'\''+minCredits+'\''+')');
 		}
-    //SemesterYearF()
-    enrollmentTime()
+    enrollmentF()
 
 	}
 	else if(User_ID<7001300)
@@ -699,7 +712,7 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
 		advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
 		student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
-		enrollmentTime()
+		enrollmentF()
     StudentMajorF()
     StudentMinorF()
 		//Enrollment=Enrollment.concat('('+'\''+User_ID+'\''+','+'\''+"CRN"+ Crn+'\''+','+'\''+ "Course ID" +courseID+'\''+','+'\''+ enrollmentDate+'\''+','+'\''+ grade+'\''+','+'\''+ semesterID+'\''+')');
@@ -729,7 +742,7 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
 		advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
 		student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
-		enrollmentTime()
+		enrollmentF()
     StudentMajorF()
     StudentMinorF()
 
@@ -759,7 +772,7 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 		user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+"D.O.B. "+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
 		advisor = advisor.concat('('+'\''+User_ID+'\''+','+'\''+userID2+'\''+','+'\''+assingDate+'\''+')');
 		student=student.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
-		enrollmentTime()
+		enrollmentF()
     StudentMajorF()
     StudentMinorF()
 	}
@@ -783,8 +796,8 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 	//user = user.concat('('+'\''+User_ID+'\''+','+'\''+First_Name+'\''+','+'\''+Last_Name+'\''+','+'\''+dateOfBirth+'\''+','+'\''+Street_Address+'\''+','+'\''+City+'\''+','+'\''+State+'\''+','+'\''+Zipcode+'\''+','+'\''+Role+'\''+')');
 	//advisor
 }
-
-
+}
+createUserF()
 
 
 
@@ -796,6 +809,7 @@ document.write("advisor");
 document.write(advisor);
 document.write("admin");
 document.write(admin);
+document.write("researcher");
 document.write(researcher);
 document.write("fullTimeFaculty");
 document.write(fullTimeFaculty);
@@ -811,14 +825,10 @@ document.write("studentHold");
 document.write(studentHold);
 document.write("hold");
 document.write(hold);
-document.write("UnderGraduateStudent");
-document.write(UnderGraduateStudent);
 document.write("FullTimeUnderGraduateStudent");
 document.write(FullTimeUnderGraduateStudent);
 document.write("PartTimeUnderGraduateStudent");
 document.write(PartTimeUnderGraduateStudent);
-document.write("GraduateStudent");
-document.write(GraduateStudent);
 document.write("FullTimeGraduateStudent");
 document.write(FullTimeGraduateStudent);
 document.write("PartTimeGraduateStudent");
@@ -828,7 +838,7 @@ document.write(Enrollment);
 document.write('StudentHistory');
 document.write(StudentHistory);
 
-document.write('Class');
+document.write('Classs');
 document.write(Class);
 
 document.write('FacultyHistory');
@@ -879,7 +889,7 @@ document.write(Course);
 document.write('Prerequisite');
 document.write(Prerequisite);
 
-document.write('TimeSlot');
+document.write('TimeSlott');//TimeSlot and TimeSlotPeriod seem link they can be one
 document.write(TimeSlot);
 
 document.write('TimeSlotPeriod');
