@@ -46,16 +46,11 @@ var StudentMinor="";
 var Minor="";
 var MinorRequirement="";
 var StudentMajor="";
-var Major= [
-"science",
-"math",
-"art",
-"compsci"
-];//Major[Math.floor(Math.random()*Major.length)];
+var Major="";//Major[Math.floor(Math.random()*Major.length)];
 var MajorRequirement="";
 var Course="";
 var Prerequisite="";
-var TimeSlot="";
+var timeSlot
 var TimeSlotPeriod="";
 var Period="";
 var TimeSlotDay="";
@@ -105,7 +100,7 @@ var graduateType;
 var Program='';
 var year;
 var facultyID;
-var timeSlot;
+var timeSlot="";
 var semesterYear;
 var present;
 var semester;
@@ -361,7 +356,8 @@ function MajorRequirementF()
 
 function PrerequisiteF()
 {
-
+	preReqCourseID=courseID--;
+	gradeReq="c";
   Prerequisite=Prerequisite.concat('('+'\''+courseID+'\''+','+'\''+preReqCourseID+'\''+','+'\''+ gradeReq+'\''+')');
 
 }
@@ -374,7 +370,7 @@ function TimeSlotF()
   {
     timeSlotID=io;
     timeSlotPeriod=io;
-    timeSlot=('('+'\''+timeSlotID+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotPeriod+'\''+')');
+    //timeSlot=timeSlot.concat('('+'\''+timeSlotID+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotPeriod+'\''+')');
 		}
   }
 }
@@ -388,7 +384,7 @@ function TimeSlotPeriodF()
   {
     timeSlotID=io;
     timeSlotPeriod=io;
-    //timeSlot=('('+'\''+timeSlotID+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotPeriod+'\''+')');
+    timeSlot=timeSlot.concat('('+'\''+timeSlotID+timeSlotDay+timeSlotPeriod+'\''+','+'\''+ timeSlotID+'\''+','+'\''+ timeSlotID+timeSlotDay+timeSlotPeriod+'\''+')');
     TimeSlotPeriod=TimeSlotPeriod.concat('('+'\''+timeSlotID+timeSlotDay+timeSlotPeriod+'\''+','+'\''+ timeSlotID+'\''+','+'\''+ timeSlotID+timeSlotDay+timeSlotPeriod+'\''+')');
     TimeSlotDay=TimeSlotDay.concat('('+'\''+timeSlotDay+'\''+','+'\''+ timeSlotDay+'\''+','+'\''+ timeSlotID+timeSlotDay+timeSlotPeriod+'\''+')');
   }
@@ -518,10 +514,14 @@ function enrollmentF()
 		departmentID=getRandomInt(4);
 	 	var courseNameTemp=courseArr[j];
 	 	courseName=courseNameTemp.split(' ')[0]+' '+courseNameTemp.split(' ')[1];
-		Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'\''+','+'\''+ description+'\''+','+'\''+ credits+'\''+')');
+		Course=Course.concat('('+'\''+courseID+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+'2'+'\''+','+'\''+ description+'\''+','+'\''+ credits+'\''+')');
+
+		PrerequisiteF()
+		Course=Course.concat('('+'\''+courseID--+'\''+','+'\''+ departmentID+'\''+','+'\''+ courseName+"1"+'\''+','+'\''+ description+'\''+','+'\''+ credits+'\''+')');
+
 		if(j==courseArr.length-1)
 		{
-	for(var i=0;i<Math.floor(Math.random() * 180);i++)
+	for(var i=0;i<50;i++)
 	{
 		User_ID=Math.floor(Math.random() * 180)+7000300
     minorID=getRandomInt(5);
@@ -534,16 +534,22 @@ function enrollmentF()
 		var availableSeats=getRandomInt(99);
 		roomF()
     departmentFunction()
-		if(i<1)
+		if(i<15)
 		{
+			courseIDtemp=courseID;
+			courseID=getRandomInt(999999);
+
     MinorRequirementF()
 		MajorRequirementF()
+		courseID=courseIDtemp
 		}
 
-    if(User_ID<7000301)
+    if(User_ID<7000601)
     {
+			User_ID-=300
     FacultyHistoryF()
     }
+		User_ID+=300
 		var enrollmentDate= randomDate(new Date(2017, 0, 1), new Date());
 		var date1 = new Date('June 18, 2017 02:30:00');
 		var date2 = new Date('December 18, 2017 02:30:00');
@@ -785,7 +791,7 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
 
 	}
 
-	else if(User_ID<70015000)
+	else if(User_ID<7001500)
 	{
 		var Role="phd";
 		login = login.concat('('+'\''+User_ID+'\''+','+'\''+email+'\''+','+'\''+password+'\''+','+'\''+Role+'\''+')');
@@ -796,16 +802,16 @@ for (User_ID=7000000;User_ID<7001550;User_ID++&&Phone++)
     StudentMajorF()
     StudentMinorF()
 	}
-	else if (User_ID<70015025)
+	else if (User_ID<7001525)
 	{
 		var Role="researcher";
-		admin=admin.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
+		researcher=researcher.concat('('+'\''+User_ID+'\''+','+'\''+Role+'\''+')');
 	}
 
 	else
 	{
 		var Status="active";
-		researcher=researcher.concat('('+'\''+User_ID+'\''+','+'\''+Status+'\''+')');
+		admin=admin.concat('('+'\''+User_ID+'\''+','+'\''+Status+'\''+')');
 	}
 
 
@@ -821,15 +827,15 @@ createUserF()
 
 
 
-document.write("login");
+document.write("login");//
 document.write(login);
-document.write("user");
+document.write("user");//
 document.write(user);
-document.write("advisor");
+document.write("advisor");//
 document.write(advisor);
-document.write("admin");
+document.write("admin");//
 document.write(admin);
-document.write("researcher");
+document.write("researcher");//
 document.write(researcher);
 document.write("fullTimeFaculty");
 document.write(fullTimeFaculty);
@@ -879,20 +885,20 @@ document.write('StudentMinor');
 document.write(StudentMinor);
 document.write('Minor');
 document.write(Minor);
-document.write('MinorRequirement');
+document.write('MinorRequirement');//
 document.write(MinorRequirement);
 document.write('StudentMajor');
 document.write(StudentMajor);
-document.write('Major');
+document.write('Major');//
 document.write(Major);
-document.write('MajorRequirement');
+document.write('MajorRequirement');//
 document.write(MajorRequirement);
-document.write('Course');
+document.write('Coursee');//
 document.write(Course);
-document.write('Prerequisite');
+document.write('Prerequisitexxx');
 document.write(Prerequisite);
 document.write('TimeSlott');//TimeSlot and TimeSlotPeriod seem link they can be one
-document.write(TimeSlot);
+document.write(timeSlot);
 document.write('TimeSlotPeriod');
 document.write(TimeSlotPeriod);
 document.write('Period');
